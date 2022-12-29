@@ -187,105 +187,49 @@ public class Renkkodmain extends JFrame {
 		int k1 = a.getSelectedIndex() + 1;
 		int k2 = b.getSelectedIndex();
 		int k3 = c.getSelectedIndex();
-		switch (k1) {
-		case 1:
-			d.setBackground(Color.decode("#964b00"));
-			break;
-		case 2:
-			d.setBackground(Color.RED);
-			break;
-		case 3:
-			d.setBackground(Color.ORANGE);
-			break;
-		case 4:
-			d.setBackground(Color.YELLOW);
-			break;
-		case 5:
-			d.setBackground(Color.GREEN);
-			break;
-		case 6:
-			d.setBackground(Color.blue);
-			break;
-		case 7:
-			d.setBackground(Color.decode("#660099"));
-			break;
-		case 8:
-			d.setBackground(Color.GRAY);
-			break;
-		case 9:
-			d.setBackground(Color.WHITE);
-			break;
-		}
-		switch (k2) {
+		boya_yard(k1, d);
+		boya_yard(k2, e);
+		boya_yard(k3, f);
+
+	}
+	public static void boya_yard(int a,JButton x) {
+		switch (a) {
 		case 0:
-			e.setBackground(Color.BLACK);
+			x.setBackground(Color.BLACK);
 			break;
 		case 1:
-			e.setBackground(Color.decode("#964b00"));
+			x.setBackground(Color.decode("#964b00"));
 			break;
 		case 2:
-			e.setBackground(Color.RED);
+			x.setBackground(Color.RED);
 			break;
 		case 3:
-			e.setBackground(Color.ORANGE);
+			x.setBackground(Color.ORANGE);
 			break;
 		case 4:
-			e.setBackground(Color.YELLOW);
+			x.setBackground(Color.YELLOW);
 			break;
 		case 5:
-			e.setBackground(Color.GREEN);
+			x.setBackground(Color.GREEN);
 			break;
 		case 6:
-			e.setBackground(Color.blue);
+			x.setBackground(Color.blue);
 			break;
 		case 7:
-			e.setBackground(Color.decode("#660099"));
+			x.setBackground(Color.decode("#660099"));
 			break;
 		case 8:
-			e.setBackground(Color.GRAY);
+			x.setBackground(Color.GRAY);
 			break;
 		case 9:
-			e.setBackground(Color.WHITE);
-			break;
-		}
-		switch (k3) {
-		case 0:
-			f.setBackground(Color.BLACK);
-			break;
-		case 1:
-			f.setBackground(Color.decode("#964b00"));
-			break;
-		case 2:
-			f.setBackground(Color.RED);
-			break;
-		case 3:
-			f.setBackground(Color.ORANGE);
-			break;
-		case 4:
-			f.setBackground(Color.YELLOW);
-			break;
-		case 5:
-			f.setBackground(Color.GREEN);
-			break;
-		case 6:
-			f.setBackground(Color.blue);
-			break;
-		case 7:
-			f.setBackground(Color.decode("#660099"));
-			break;
-		case 8:
-			f.setBackground(Color.GRAY);
-			break;
-		case 9:
-			f.setBackground(Color.WHITE);
+			x.setBackground(Color.WHITE);
 			break;
 		case 10:
-			f.setBackground(Color.decode("#CFB53B"));
+			x.setBackground(Color.decode("#CFB53B"));
 			break;
 		case 11:
-			f.setBackground(Color.decode("#C0C0C0"));
+			x.setBackground(Color.decode("#C0C0C0"));
 			break;
 		}
-
 	}
 }
