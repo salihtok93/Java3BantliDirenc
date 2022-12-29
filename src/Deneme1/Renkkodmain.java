@@ -14,10 +14,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import java.awt.Window.Type;
 
 public class Renkkodmain extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField sonucc;
 
@@ -61,7 +64,7 @@ public class Renkkodmain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JComboBox grup = new JComboBox(bas1);
+		JComboBox<String> grup = new JComboBox<String>(bas1);
 		grup.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup.setSelectedIndex(1);
 		grup.setToolTipText("1.Basamagi sec");
@@ -70,7 +73,8 @@ public class Renkkodmain extends JFrame {
 		grup.setBounds(21, 146, 122, 21);
 		contentPane.add(grup);
 
-		JComboBox grup_1 = new JComboBox(bas2);
+
+		JComboBox<String> grup_1 = new JComboBox<String>(bas2);
 		grup_1.setBackground(new Color(255, 255, 255));
 		grup_1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup_1.setSelectedIndex(4);
@@ -79,7 +83,8 @@ public class Renkkodmain extends JFrame {
 		grup_1.setBounds(153, 146, 133, 21);
 		contentPane.add(grup_1);
 
-		JComboBox grup_2 = new JComboBox(carpan);
+
+		JComboBox<String> grup_2 = new JComboBox<String>(carpan);
 		grup_2.setBackground(new Color(255, 255, 255));
 		grup_2.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup_2.setToolTipText("Carpan Rengini Sec");
@@ -118,19 +123,19 @@ public class Renkkodmain extends JFrame {
 		contentPane.add(sonucc);
 		sonucc.setColumns(10);
 
-		JButton renk2 = new JButton("");
+		JButton renk2 = new JButton();
 		renk2.setBackground(Color.YELLOW);
 		renk2.setEnabled(false);
 		renk2.setBounds(195, 27, 13, 68);
 		contentPane.add(renk2);
 
-		JButton renk3 = new JButton("");
+		JButton renk3 = new JButton();
 		renk3.setBackground(Color.BLACK);
 		renk3.setEnabled(false);
 		renk3.setBounds(249, 27, 13, 68);
 		contentPane.add(renk3);
 
-		JButton renk1 = new JButton("");
+		JButton renk1 = new JButton();
 		renk1.setBackground(Color.RED);
 		renk1.setEnabled(false);
 		renk1.setBounds(144, 27, 13, 68);
@@ -153,9 +158,7 @@ public class Renkkodmain extends JFrame {
 		int k2 = b.getSelectedIndex();
 		int k3 = c.getSelectedIndex();
 		double crp;
-		String snc = "";
-		snc += k1;
-		snc += k2;
+		int snc = 10*k1 + k2;
 
 		if (k3 == 10) {
 			crp = 0.1;
@@ -165,16 +168,16 @@ public class Renkkodmain extends JFrame {
 			crp = Math.pow(10, k3);
 		}
 
-		Double sonuc = Integer.parseInt(snc) * crp;
-
+		Double sonuc = snc * crp;
+		
 		if (sonuc.toString().length() >= 6 && sonuc.toString().length() < 9) {
-			sonuc = Integer.parseInt(snc) * crp / (Math.pow(10, 3));
+			sonuc /=(Math.pow(10, 3));
 			d.setText("Sonuc : " + sonuc + "kΩ");
-		} else if (sonuc.toString().length() >= 9 && sonuc.toString().length() <= 11) {
-			sonuc = Integer.parseInt(snc) * crp / (Math.pow(10, 6));
+		} else if (sonuc.toString().length() >= 9 && sonuc.toString().length() < 12) {
+			sonuc /=(Math.pow(10, 6));
 			d.setText("Sonuc : " + sonuc + "MΩ");
-		} else if (sonuc.toString().length() > 11) {
-			sonuc = Integer.parseInt(snc) * crp / (Math.pow(10, 9));
+		} else if (sonuc.toString().length() >= 12 && sonuc.toString().length() < 15) {
+			sonuc /=(Math.pow(10, 9));
 			d.setText("Sonuc : " + sonuc + "GΩ");
 		} else {
 			d.setText("Sonuc : " + sonuc + " Ω");
