@@ -73,7 +73,6 @@ public class Renkkodmain extends JFrame {
 		grup.setBounds(21, 146, 122, 21);
 		contentPane.add(grup);
 
-
 		JComboBox<String> grup_1 = new JComboBox<String>(bas2);
 		grup_1.setBackground(new Color(255, 255, 255));
 		grup_1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
@@ -82,7 +81,6 @@ public class Renkkodmain extends JFrame {
 		grup_1.setMaximumRowCount(10);
 		grup_1.setBounds(153, 146, 133, 21);
 		contentPane.add(grup_1);
-
 
 		JComboBox<String> grup_2 = new JComboBox<String>(carpan);
 		grup_2.setBackground(new Color(255, 255, 255));
@@ -140,8 +138,8 @@ public class Renkkodmain extends JFrame {
 		renk1.setEnabled(false);
 		renk1.setBounds(144, 27, 13, 68);
 		contentPane.add(renk1);
-		
-		JLabel lblNewLabel_3 = new JLabel("");
+
+		JLabel lblNewLabel_3 = new JLabel();
 		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\HUAWEI\\eclipse-workspace\\ZDirencKodlari\\resistor.jpg"));
 		lblNewLabel_3.setBounds(46, 10, 329, 103);
 		contentPane.add(lblNewLabel_3);
@@ -158,7 +156,8 @@ public class Renkkodmain extends JFrame {
 		int k2 = b.getSelectedIndex();
 		int k3 = c.getSelectedIndex();
 		double crp;
-		int snc = 10*k1 + k2;
+		String birim;
+		int snc = 10 * k1 + k2;
 
 		if (k3 == 10) {
 			crp = 0.1;
@@ -169,19 +168,20 @@ public class Renkkodmain extends JFrame {
 		}
 
 		Double sonuc = snc * crp;
-		
-		if (sonuc.toString().length() >= 6 && sonuc.toString().length() < 9) {
-			sonuc /=(Math.pow(10, 3));
-			d.setText("Sonuc : " + sonuc + "kΩ");
-		} else if (sonuc.toString().length() >= 9 && sonuc.toString().length() < 12) {
-			sonuc /=(Math.pow(10, 6));
-			d.setText("Sonuc : " + sonuc + "MΩ");
-		} else if (sonuc.toString().length() >= 12 && sonuc.toString().length() < 15) {
-			sonuc /=(Math.pow(10, 9));
-			d.setText("Sonuc : " + sonuc + "GΩ");
+
+		if (sonuc >= 1000000000) {
+			sonuc = sonuc / 1000000000;
+			birim = "GΩ";
+		} else if (sonuc >= 1000000 && sonuc < 1000000000) {
+			sonuc = sonuc / 1000000;
+			birim = "MΩ";
+		} else if (sonuc >= 1000 && sonuc < 1000000) {
+			sonuc = sonuc / 1000;
+			birim = "kΩ";
 		} else {
-			d.setText("Sonuc : " + sonuc + " Ω");
+			birim = "Ω";
 		}
+		d.setText("Sonuc : " + sonuc + birim);
 
 	}
 
@@ -195,7 +195,8 @@ public class Renkkodmain extends JFrame {
 		boya_yard(k3, f);
 
 	}
-	public static void boya_yard(int a,JButton x) {
+
+	public static void boya_yard(int a, JButton x) {
 		switch (a) {
 		case 0:
 			x.setBackground(Color.BLACK);
