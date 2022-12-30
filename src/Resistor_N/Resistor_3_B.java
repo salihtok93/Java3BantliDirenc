@@ -7,8 +7,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 public class Resistor_3_B extends Base_Resistor {
-	
-	public  void hesapla(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JTextField d) {
+
+	public void hesapla(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JTextField d) {
 		int k1 = a.getSelectedIndex() + 1;
 		int k2 = b.getSelectedIndex();
 		int k3 = c.getSelectedIndex();
@@ -28,32 +28,21 @@ public class Resistor_3_B extends Base_Resistor {
 
 		if (sonuc >= 1000000000) {
 			sonuc = sonuc / 1000000000;
-			birim = "GΩ";
+			birim = " GΩ";
 		} else if (sonuc >= 1000000 && sonuc < 1000000000) {
 			sonuc = sonuc / 1000000;
-			birim = "MΩ";
+			birim = " MΩ";
 		} else if (sonuc >= 1000 && sonuc < 1000000) {
 			sonuc = sonuc / 1000;
-			birim = "kΩ";
+			birim = " kΩ";
 		} else {
-			birim = "Ω";
+			birim = " Ω";
 		}
 		d.setText("Sonuc : " + sonuc + birim);
 
 	}
-	
-	public void boya(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JButton d, JButton e,
-			JButton f) {
-		int k1 = a.getSelectedIndex() + 1;
-		int k2 = b.getSelectedIndex();
-		int k3 = c.getSelectedIndex();
-		boya_yard(k1, d);
-		boya_yard(k2, e);
-		boya_yard(k3, f);
 
-	}
-
-	public void boya_yard(int a, JButton x) {
+	public void boya(int a, JButton x) {
 		switch (a) {
 		case 0:
 			x.setBackground(Color.BLACK);
@@ -93,9 +82,5 @@ public class Resistor_3_B extends Base_Resistor {
 			break;
 		}
 	}
-	
-	
-	
-	
-	
+
 }

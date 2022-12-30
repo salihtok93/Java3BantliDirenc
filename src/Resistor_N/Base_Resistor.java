@@ -8,7 +8,7 @@ public class Base_Resistor {
 	String[] carpan = { "x1 Siyah", "x10 Kahverengi", "x100 Kırmızı", "x1k Turuncu", "x10k Sarı", "x100k Yesil",
 			"x1M Mavi", "x10M Mor", "X100M Gri", "X1G Beyaz", "%10 Altın", "%100 Gumus" };
 
-	String[] tolerans = { "%1 Kahverengi", "%2 Kırmızı", "%3 Turuncu", "%4 Sarı", "%0.5 Yesil", "%0.25 Mavi",
+	String[] tolerans = { "Yok", "%1 Kahverengi", "%2 Kırmızı", "%3 Turuncu", "%4 Sarı", "%0.5 Yesil", "%0.25 Mavi",
 			"0.10 Mor", "0.05 Gri", "%5 Altın", "%10 Gumus" };
 
 	public String[] getBas1() {
@@ -26,6 +26,5 @@ public class Base_Resistor {
 	public String[] getTolerans() {
 		return tolerans;
 	}
-	
 
 }

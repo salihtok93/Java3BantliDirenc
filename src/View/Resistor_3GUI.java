@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -20,13 +22,8 @@ import java.awt.Font;
 
 public class Resistor_3GUI extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private JPanel contentPane;
-	private JTextField sonucc;
+	private JPanel w_pane;
+	private JTextField lbl_sonuc;
 	Resistor_3_B bant_3 = new Resistor_3_B();
 
 	/**
@@ -51,103 +48,127 @@ public class Resistor_3GUI extends JFrame {
 	 */
 
 	public Resistor_3GUI() {
+		setTitle("3 Bantlı Direnc");
 		setResizable(false);
 		setType(Type.POPUP);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(219, 219, 219));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(100, 100, 500, 400);
+		w_pane = new JPanel();
+		w_pane.setBackground(new Color(219, 219, 219));
+		w_pane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(w_pane);
+		w_pane.setLayout(null);
 
-		JComboBox<String> grup = new JComboBox<String>(bant_3.getBas1());
-		grup.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
-		grup.setSelectedIndex(1);
-		grup.setToolTipText("1.Basamagi sec");
-		grup.setMaximumRowCount(9);
-		grup.setBackground(new Color(255, 255, 255));
-		grup.setBounds(21, 146, 122, 21);
-		contentPane.add(grup);
+		JComboBox jc_bas1 = new JComboBox(bant_3.getBas1());
+		jc_bas1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
+		jc_bas1.setSelectedIndex(1);
+		jc_bas1.setToolTipText("1.Basamagi sec");
+		jc_bas1.setMaximumRowCount(9);
+		jc_bas1.setBackground(new Color(255, 255, 255));
+		jc_bas1.setBounds(21, 146, 122, 21);
+		w_pane.add(jc_bas1);
 
-		JComboBox<String> grup_1 = new JComboBox<String>(bant_3.getBas2());
-		grup_1.setBackground(new Color(255, 255, 255));
-		grup_1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
-		grup_1.setSelectedIndex(4);
-		grup_1.setToolTipText("2.Basamagi sec");
-		grup_1.setMaximumRowCount(10);
-		grup_1.setBounds(153, 146, 133, 21);
-		contentPane.add(grup_1);
+		JComboBox jc_bas2 = new JComboBox(bant_3.getBas2());
+		jc_bas2.setBackground(new Color(255, 255, 255));
+		jc_bas2.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
+		jc_bas2.setSelectedIndex(4);
+		jc_bas2.setToolTipText("2.Basamagi sec");
+		jc_bas2.setMaximumRowCount(10);
+		jc_bas2.setBounds(153, 146, 133, 21);
+		w_pane.add(jc_bas2);
 
-		JComboBox<String> grup_2 = new JComboBox<String>(bant_3.getCarpan());
-		grup_2.setBackground(new Color(255, 255, 255));
-		grup_2.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
-		grup_2.setToolTipText("Carpan Rengini Sec");
-		grup_2.setMaximumRowCount(12);
-		grup_2.setBounds(296, 146, 130, 21);
-		contentPane.add(grup_2);
+		JComboBox jc_carpan = new JComboBox(bant_3.getCarpan());
+		jc_carpan.setBackground(new Color(255, 255, 255));
+		jc_carpan.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
+		jc_carpan.setToolTipText("Carpan Rengini Sec");
+		jc_carpan.setMaximumRowCount(12);
+		jc_carpan.setBounds(296, 146, 130, 21);
+		w_pane.add(jc_carpan);
 
-		JLabel lblNewLabel = new JLabel("1.BASAMAK");
-		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
-		lblNewLabel.setBounds(60, 123, 97, 13);
-		contentPane.add(lblNewLabel);
+		JLabel lbl_bas1 = new JLabel("1.BASAMAK");
+		lbl_bas1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
+		lbl_bas1.setBounds(60, 123, 97, 13);
+		w_pane.add(lbl_bas1);
 
-		JLabel lblNewLabel_1 = new JLabel("2. BASAMAK");
-		lblNewLabel_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 11));
-		lblNewLabel_1.setBounds(187, 123, 97, 13);
-		contentPane.add(lblNewLabel_1);
+		JLabel lbl_bas2 = new JLabel("2. BASAMAK");
+		lbl_bas2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 11));
+		lbl_bas2.setBounds(187, 123, 97, 13);
+		w_pane.add(lbl_bas2);
 
-		JLabel lblNewLabel_2 = new JLabel("CARPAN");
-		lblNewLabel_2.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 11));
-		lblNewLabel_2.setBounds(318, 123, 97, 13);
-		contentPane.add(lblNewLabel_2);
+		JLabel lbl_carpan = new JLabel("CARPAN");
+		lbl_carpan.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 11));
+		lbl_carpan.setBounds(318, 123, 97, 13);
+		w_pane.add(lbl_carpan);
 
-		JButton btn = new JButton("Hesapla");
-		btn.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
-		btn.setBackground(new Color(255, 255, 255));
+		JButton btn_hesapla = new JButton("Hesapla");
+		btn_hesapla.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 12));
+		btn_hesapla.setBackground(new Color(255, 255, 255));
 
-		btn.setBounds(165, 193, 97, 30);
-		contentPane.add(btn);
+		btn_hesapla.setBounds(165, 193, 97, 30);
+		w_pane.add(btn_hesapla);
 
-		sonucc = new JTextField();
-		sonucc.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		sonucc.setText("Sonuc : 24.0 Ω");
-		sonucc.setEditable(false);
-		sonucc.setBounds(21, 250, 394, 30);
+		lbl_sonuc = new JTextField();
+		lbl_sonuc.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lbl_sonuc.setText("Sonuc : 24.0 Ω");
+		lbl_sonuc.setEditable(false);
+		lbl_sonuc.setBounds(21, 250, 394, 30);
 
-		contentPane.add(sonucc);
-		sonucc.setColumns(10);
+		w_pane.add(lbl_sonuc);
+		lbl_sonuc.setColumns(10);
 
-		JButton renk2 = new JButton();
-		renk2.setBackground(Color.YELLOW);
-		renk2.setEnabled(false);
-		renk2.setBounds(195, 27, 13, 68);
-		contentPane.add(renk2);
+		JButton lbl_boya_2 = new JButton();
+		lbl_boya_2.setBackground(Color.YELLOW);
+		lbl_boya_2.setEnabled(false);
+		lbl_boya_2.setBounds(195, 27, 13, 68);
+		w_pane.add(lbl_boya_2);
 
-		JButton renk3 = new JButton();
-		renk3.setBackground(Color.BLACK);
-		renk3.setEnabled(false);
-		renk3.setBounds(249, 27, 13, 68);
-		contentPane.add(renk3);
+		JButton lbl_boya_3 = new JButton();
+		lbl_boya_3.setBackground(Color.BLACK);
+		lbl_boya_3.setEnabled(false);
+		lbl_boya_3.setBounds(249, 27, 13, 68);
+		w_pane.add(lbl_boya_3);
 
-		JButton renk1 = new JButton();
-		renk1.setBackground(Color.RED);
-		renk1.setEnabled(false);
-		renk1.setBounds(144, 27, 13, 68);
-		contentPane.add(renk1);
+		JButton lbl_boya_1 = new JButton();
+		lbl_boya_1.setBackground(Color.RED);
+		lbl_boya_1.setEnabled(false);
+		lbl_boya_1.setBounds(144, 27, 13, 68);
+		w_pane.add(lbl_boya_1);
 
-		JLabel lblNewLabel_3 = new JLabel();
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\HUAWEI\\eclipse-workspace\\ZDirencKodlari\\resistor.jpg"));
-		lblNewLabel_3.setBounds(46, 10, 329, 103);
-		contentPane.add(lblNewLabel_3);
-		btn.addActionListener(new ActionListener() {
+		JLabel lbl_direnc = new JLabel();
+		lbl_direnc.setIcon(new ImageIcon("C:\\Users\\HUAWEI\\eclipse-workspace\\ZDirencKodlari\\resistor.jpg"));
+		lbl_direnc.setBounds(46, 10, 329, 103);
+		w_pane.add(lbl_direnc);
+
+		btn_hesapla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bant_3.boya(grup, grup_1, grup_2, renk1, renk2, renk3);
-				bant_3.hesapla(grup, grup_1, grup_2, sonucc);
+				bant_3.hesapla(jc_bas1, jc_bas2, jc_carpan, lbl_sonuc);
+			}
+		});
+		jc_bas1.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				bant_3.boya(jc_bas1.getSelectedIndex() + 1, lbl_boya_1);
+
+			}
+		});
+		jc_bas2.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				bant_3.boya(jc_bas2.getSelectedIndex(), lbl_boya_2);
+
+			}
+		});
+		jc_carpan.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				bant_3.boya(jc_carpan.getSelectedIndex(), lbl_boya_3);
+
 			}
 		});
 	}
-
 }
