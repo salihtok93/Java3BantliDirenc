@@ -3,16 +3,17 @@ package Resistor_N;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class Resistor_3_B extends Base_Resistor {
+public class Resistor_4_B extends Base_Resistor {
 
-	public void hesapla(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JTextField d) {
+	public void hesapla(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JComboBox<String> e,
+			JTextField d) {
 		int k1 = a.getSelectedIndex() + 1;
 		int k2 = b.getSelectedIndex();
+		int k4 = e.getSelectedIndex();
 		int k3 = c.getSelectedIndex();
 		String birim;
-		int snc = 10 * k1 + k2;
+		int snc = 100 * k1 + 10 * k2 + k4;
 		double crp = carpan_bul(k3);
-		;
 
 		Double sonuc = snc * crp;
 
@@ -31,5 +32,4 @@ public class Resistor_3_B extends Base_Resistor {
 		d.setText("Sonuc : " + sonuc + birim);
 
 	}
-
 }

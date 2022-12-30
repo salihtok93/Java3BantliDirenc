@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Resistor_3GUI extends JFrame {
 
@@ -53,7 +54,7 @@ public class Resistor_3GUI extends JFrame {
 		setType(Type.POPUP);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 470, 400);
 		w_pane = new JPanel();
 		w_pane.setBackground(new Color(219, 219, 219));
 		w_pane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,6 +111,7 @@ public class Resistor_3GUI extends JFrame {
 		w_pane.add(btn_hesapla);
 
 		lbl_sonuc = new JTextField();
+		lbl_sonuc.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_sonuc.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lbl_sonuc.setText("Sonuc : 24.0 Ω");
 		lbl_sonuc.setEditable(false);
@@ -140,6 +142,18 @@ public class Resistor_3GUI extends JFrame {
 		lbl_direnc.setIcon(new ImageIcon("C:\\Users\\HUAWEI\\eclipse-workspace\\ZDirencKodlari\\resistor.jpg"));
 		lbl_direnc.setBounds(46, 10, 329, 103);
 		w_pane.add(lbl_direnc);
+		
+		JButton btn_geri = new JButton("GERİ");
+		btn_geri.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		btn_geri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login_GUI lGUI = new Login_GUI();
+				lGUI.setVisible(true);
+				dispose();
+			}
+		});
+		btn_geri.setBounds(341, 313, 85, 21);
+		w_pane.add(btn_geri);
 
 		btn_hesapla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
