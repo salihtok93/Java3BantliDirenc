@@ -1,10 +1,13 @@
-package Deneme1;
+package View;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Resistor_N.Resistor_3_B;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -15,14 +18,16 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 
-public class Renkkodmain extends JFrame {
+public class Resistor_3GUI extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JTextField sonucc;
+	Resistor_3_B bant_3 = new Resistor_3_B();
 
 	/**
 	 * Launch the application.
@@ -31,7 +36,7 @@ public class Renkkodmain extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Renkkodmain frame = new Renkkodmain();
+					Resistor_3GUI frame = new Resistor_3GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,16 +50,10 @@ public class Renkkodmain extends JFrame {
 	 * Create the frame.
 	 */
 
-	public Renkkodmain() {
+	public Resistor_3GUI() {
 		setResizable(false);
 		setType(Type.POPUP);
-		String[] bas1 = { "1 Kahverengi", "2 Kırmızı", "3 Turuncu", "4 Sarı", "5 Yesil", "6 Mavi", "7 Mor", "8 Gri",
-				"9 Beyaz" };
-		String[] bas2 = { "0 Siyah", "1 Kahverengi", "2 Kırmızı", "3 Turuncu", "4 Sarı", "5 Yesil", "6 Mavi", "7 Mor",
-				"8 Gri", "9 Beyaz" };
-		String[] carpan = { "x1 Siyah", "x10 Kahverengi", "x100 Kırmızı", "x1k Turuncu", "x10k Sarı", "x100k Yesil",
-				"x1M Mavi", "x10M Mor", "X100M Gri", "X1G Beyaz", "%10 Altın", "%100 Gumus" };
-		setTitle("3 Bantli Direnc");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -64,7 +63,7 @@ public class Renkkodmain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JComboBox<String> grup = new JComboBox<String>(bas1);
+		JComboBox<String> grup = new JComboBox<String>(bant_3.getBas1());
 		grup.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup.setSelectedIndex(1);
 		grup.setToolTipText("1.Basamagi sec");
@@ -73,7 +72,7 @@ public class Renkkodmain extends JFrame {
 		grup.setBounds(21, 146, 122, 21);
 		contentPane.add(grup);
 
-		JComboBox<String> grup_1 = new JComboBox<String>(bas2);
+		JComboBox<String> grup_1 = new JComboBox<String>(bant_3.getBas2());
 		grup_1.setBackground(new Color(255, 255, 255));
 		grup_1.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup_1.setSelectedIndex(4);
@@ -82,7 +81,7 @@ public class Renkkodmain extends JFrame {
 		grup_1.setBounds(153, 146, 133, 21);
 		contentPane.add(grup_1);
 
-		JComboBox<String> grup_2 = new JComboBox<String>(carpan);
+		JComboBox<String> grup_2 = new JComboBox<String>(bant_3.getCarpan());
 		grup_2.setBackground(new Color(255, 255, 255));
 		grup_2.setFont(new Font("Trebuchet MS", Font.BOLD, 11));
 		grup_2.setToolTipText("Carpan Rengini Sec");
@@ -145,95 +144,10 @@ public class Renkkodmain extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boya(grup, grup_1, grup_2, renk1, renk2, renk3);
-				hesapla(grup, grup_1, grup_2, sonucc);
+				bant_3.boya(grup, grup_1, grup_2, renk1, renk2, renk3);
+				bant_3.hesapla(grup, grup_1, grup_2, sonucc);
 			}
 		});
 	}
 
-	public static void hesapla(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JTextField d) {
-		int k1 = a.getSelectedIndex() + 1;
-		int k2 = b.getSelectedIndex();
-		int k3 = c.getSelectedIndex();
-		double crp;
-		String birim;
-		int snc = 10 * k1 + k2;
-
-		if (k3 == 10) {
-			crp = 0.1;
-		} else if (k3 == 11) {
-			crp = 0.01;
-		} else {
-			crp = Math.pow(10, k3);
-		}
-
-		Double sonuc = snc * crp;
-
-		if (sonuc >= 1000000000) {
-			sonuc = sonuc / 1000000000;
-			birim = "GΩ";
-		} else if (sonuc >= 1000000 && sonuc < 1000000000) {
-			sonuc = sonuc / 1000000;
-			birim = "MΩ";
-		} else if (sonuc >= 1000 && sonuc < 1000000) {
-			sonuc = sonuc / 1000;
-			birim = "kΩ";
-		} else {
-			birim = "Ω";
-		}
-		d.setText("Sonuc : " + sonuc + birim);
-
-	}
-
-	public static void boya(JComboBox<String> a, JComboBox<String> b, JComboBox<String> c, JButton d, JButton e,
-			JButton f) {
-		int k1 = a.getSelectedIndex() + 1;
-		int k2 = b.getSelectedIndex();
-		int k3 = c.getSelectedIndex();
-		boya_yard(k1, d);
-		boya_yard(k2, e);
-		boya_yard(k3, f);
-
-	}
-
-	public static void boya_yard(int a, JButton x) {
-		switch (a) {
-		case 0:
-			x.setBackground(Color.BLACK);
-			break;
-		case 1:
-			x.setBackground(Color.decode("#964b00"));
-			break;
-		case 2:
-			x.setBackground(Color.RED);
-			break;
-		case 3:
-			x.setBackground(Color.ORANGE);
-			break;
-		case 4:
-			x.setBackground(Color.YELLOW);
-			break;
-		case 5:
-			x.setBackground(Color.GREEN);
-			break;
-		case 6:
-			x.setBackground(Color.blue);
-			break;
-		case 7:
-			x.setBackground(Color.decode("#660099"));
-			break;
-		case 8:
-			x.setBackground(Color.GRAY);
-			break;
-		case 9:
-			x.setBackground(Color.WHITE);
-			break;
-		case 10:
-			x.setBackground(Color.decode("#CFB53B"));
-			break;
-		case 11:
-			x.setBackground(Color.decode("#C0C0C0"));
-			break;
-		}
-	}
 }
